@@ -1,7 +1,9 @@
 package com.blv.trabbd4;
 
-import com.blv.trabbd4.model.*;
-import com.blv.trabbd4.repository.*;
+import com.blv.trabbd4.model.Cidade;
+import com.blv.trabbd4.model.Estado;
+import com.blv.trabbd4.repository.CidadeRepository;
+import com.blv.trabbd4.repository.EstadoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,7 @@ public class TrabalhoBd4Application implements CommandLineRunner {
     private EmailRepository repositoryEmail;
 
     @Autowired
-    private ParcelaRepository parcelaRepository;
+    private CidadeRepository repositoryCidade;
 
     public static void main(String[] args) {
         SpringApplication.run(TrabalhoBd4Application.class, args);
@@ -30,20 +32,28 @@ public class TrabalhoBd4Application implements CommandLineRunner {
     public void run(String... args){
         log.info("Start Application...\n");
 
-        parcelaRepository.save(new Parcela(10.50, new Date(), "paga"));
+        Estado pr = new Estado("PR");
+        repositoryEstado.save(pr);
 
-        parcelaRepository.findAll().forEach(System.out::println);
-        repositoryEmail.save(new Email("leonardobfritas@gmail.com"));
-        repositoryEmail.save(new Email("bbrez@gmail.com"));
-        repositoryEmail.save(new Email("victorhugomt@hotmail.com"));
+        repositoryCidade.save(new Cidade("Foz do Iguaçu", pr));
+        repositoryCidade.save(new Cidade("Cianorte", pr));
 
-        System.out.println("findAll()");
-        repositoryEmail.findAll().forEach(System.out::println);
+        Estado sc = new Estado("SC");
+        repositoryEstado.save(sc);
 
-        System.out.println("findById(1L)");
-        repositoryEmail.findById(1l).ifPresent(System.out::println);
+        repositoryCidade.save(new Cidade("Blumenau", sc));
+        repositoryCidade.save(new Cidade("Joinville", sc));
 
-        System.out.println("findByTelefone('99819-8420')");
-        repositoryEmail.findByEmail("bbrez@gmail.com").forEach(System.out::println);
+        Estado rs = new Estado("RS");
+        repositoryEstado.save(rs);
+
+        repositoryCidade.save(new Cidade("Santa Maria", rs));
+        repositoryCidade.save(new Cidade("Passo Fundo", rs));
+
+        System.out.println("Estado - findAll()");
+        repositoryEstado.findAll().forEach(System.out::println);
+
+        System.out.println("Cidade - findAll()");
+        repositoryCidade.findAll().forEach(System.out::println);
     }
 }

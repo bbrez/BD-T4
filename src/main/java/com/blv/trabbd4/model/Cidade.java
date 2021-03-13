@@ -14,6 +14,10 @@ public class Cidade {
     @JoinColumn(name="id_estado", nullable = false)
     private Estado estado;
 
+    @OneToMany(mappedBy = "cidade", fetch = FetchType.EAGER)
+    private List<Endereco> enderecos;
+
+
     public Cidade(){}
 
     public Cidade(String nome, Estado estado){
