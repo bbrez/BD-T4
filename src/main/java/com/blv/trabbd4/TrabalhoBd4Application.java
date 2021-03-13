@@ -1,7 +1,11 @@
 package com.blv.trabbd4;
 
+import com.blv.trabbd4.model.Email;
 import com.blv.trabbd4.model.Estado;
+import com.blv.trabbd4.model.Telefone;
+import com.blv.trabbd4.repository.EmailRepository;
 import com.blv.trabbd4.repository.EstadoRepository;
+import com.blv.trabbd4.repository.TelefoneRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +19,7 @@ public class TrabalhoBd4Application implements CommandLineRunner {
     private static final Logger log = LoggerFactory.getLogger(TrabalhoBd4Application.class);
 
     @Autowired
-    private EstadoRepository repositoryEstado;
+    private EmailRepository repositoryEmail;
 
     public static void main(String[] args) {
         SpringApplication.run(TrabalhoBd4Application.class, args);
@@ -25,17 +29,17 @@ public class TrabalhoBd4Application implements CommandLineRunner {
     public void run(String... args){
         log.info("Start Application...\n");
 
-        repositoryEstado.save(new Estado("PR"));
-        repositoryEstado.save(new Estado("SC"));
-        repositoryEstado.save(new Estado("RS"));
+        repositoryEmail.save(new Email("leonardobfritas@gmail.com"));
+        repositoryEmail.save(new Email("bbrez@gmail.com"));
+        repositoryEmail.save(new Email("victorhugomt@hotmail.com"));
 
         System.out.println("findAll()");
-        repositoryEstado.findAll().forEach(System.out::println);
+        repositoryEmail.findAll().forEach(System.out::println);
 
         System.out.println("findById(1L)");
-        repositoryEstado.findById(1l).ifPresent(System.out::println);
+        repositoryEmail.findById(1l).ifPresent(System.out::println);
 
-        System.out.println("findByUF('PR')");
-        repositoryEstado.findByUF("PR").forEach(System.out::println);
+        System.out.println("findByTelefone('99819-8420')");
+        repositoryEmail.findByEmail("bbrez@gmail.com").forEach(System.out::println);
     }
 }
