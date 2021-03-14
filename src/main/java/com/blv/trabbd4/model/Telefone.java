@@ -1,16 +1,20 @@
 package com.blv.trabbd4.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Data;
 
+import javax.persistence.*;
+
+@Data
 @Entity
 public class Telefone {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idTelefone;
     private String telefone;
+
+    @ManyToOne
+    @JoinColumn(name="id_cliente")
+    private Cliente cliente;
 
     public Telefone() {
     }
