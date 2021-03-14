@@ -1,7 +1,10 @@
 package com.blv.trabbd4.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
+@Data
 @Entity
 public class EnderecoEspecifico {
     @Id

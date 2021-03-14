@@ -1,11 +1,11 @@
 package com.blv.trabbd4.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Data;
+
+import javax.persistence.*;
 import java.util.Date;
 
+@Data
 @Entity
 public class Fatura{
     @Id
@@ -15,19 +15,22 @@ public class Fatura{
     Date emissao;
     int numeroParcelas;
     String situacao;
-    double ValorTotal;
+    double valorTotal;
 
+    @ManyToOne
+    @JoinColumn(name="id_cliente")
+    private Cliente cliente;
+
+    public Fatura(){}
     public Fatura(Date emissao, int numeroParcelas, String situacao, double valorTotal) {
         this.emissao = emissao;
         this.numeroParcelas = numeroParcelas;
         this.situacao = situacao;
-        ValorTotal = valorTotal;
+        this.valorTotal = valorTotal;
     }
 
     public String toString(){
-        return "id da fatura: " + idFatura + " data de emissao: " + emissao + " numero de parcelas: " + numeroParcelas + " situacao atual: " + situacao + " valor total: " + ValorTotal;
+        return "id da fatura: " + idFatura + " data de emissao: " + emissao + " numero de parcelas: " + numeroParcelas + " situacao atual: " + situacao + " valor total: " + valorTotal;
     }
-
-    //Cliente idCliente;
 
 }

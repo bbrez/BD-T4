@@ -24,6 +24,9 @@ public class TrabalhoBd4Application implements CommandLineRunner {
     @Autowired
     private CidadeRepository repositoryCidade;
 
+    @Autowired
+    private CidadeRepository repositoryCidade;
+
     public static void main(String[] args) {
         SpringApplication.run(TrabalhoBd4Application.class, args);
     }

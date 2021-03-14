@@ -1,8 +1,11 @@
 package com.blv.trabbd4.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.List;
 
+@Data
 @Entity
 public class Cidade {
     @Id
@@ -19,7 +22,6 @@ public class Cidade {
 
 
     public Cidade(){}
-
     public Cidade(String nome, Estado estado){
         this.nome = nome;
         this.estado = estado;
