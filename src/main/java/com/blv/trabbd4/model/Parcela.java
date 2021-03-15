@@ -18,16 +18,17 @@ public class Parcela {
 
     @Column(nullable=false)
     Date vencimento;
+    Date pagamento = null;
 
-    @Column(nullable=false)
-    String situacao;
+    @Enumerated
+    EstadoParcela situacao;
 
     @ManyToOne
     Fatura fatura;
 
     public Parcela(){}
 
-    public Parcela(double valorParcela, Date vencimento, String situacao) {
+    public Parcela(double valorParcela, Date vencimento, EstadoParcela situacao) {
         ValorParcela = valorParcela;
         this.vencimento = vencimento;
         this.situacao = situacao;
@@ -35,7 +36,21 @@ public class Parcela {
 
     @Override
     public String toString() {
-        return "id da parcela: " + idParcela + " vencimento: " + vencimento + " situacao atual: " + situacao + " pertencente a fatura: " + fatura;
+        String pago;
+        if (pagamento != null) pago = vencimento.toString();
+        else pago = "";
+        return "id da parcela: " + idParcela + " vencimento: " + vencimento + " situacao atual: " + pago + "  " + situacao + " pertencente a fatura: " + fatura.getId();
     }
 
+    public void setFatura(Fatura fatura) {
+        this.fatura = fatura;
+    }
+
+    public double getValor() {
+        return ValorParcela;
+    }
+
+    public void setPagamento(Date date) {
+        pagamento = date;
+    }
 }
