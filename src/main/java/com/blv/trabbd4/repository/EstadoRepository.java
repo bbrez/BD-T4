@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface EstadoRepository extends CrudRepository<Estado, Long> {
-    List<Estado> findByUF(String UF);
+    Estado findByUF(String UF);
 }

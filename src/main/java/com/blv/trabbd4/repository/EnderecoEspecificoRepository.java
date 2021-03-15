@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface EnderecoEspecificoRepository extends CrudRepository<EnderecoEspecifico, Long> {
     List<EnderecoEspecifico> findByNumero(Long numero);
-    List<EnderecoEspecifico> findByComplemento(String complemento);
+    EnderecoEspecifico findByNumeroAndEndereco_CEP(Long numero, String CEP);
 }
