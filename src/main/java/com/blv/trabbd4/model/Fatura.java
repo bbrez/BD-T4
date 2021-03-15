@@ -16,21 +16,23 @@ public class Fatura{
     int numeroParcelas;
     String situacao;
     double valorTotal;
+    double saldoPagar;
 
     @ManyToOne
     @JoinColumn(name="id_cliente")
     private Cliente cliente;
 
     public Fatura(){}
-    public Fatura(Date emissao, int numeroParcelas, String situacao, double valorTotal) {
+    public Fatura(Date emissao, int numeroParcelas, String situacao, double valorTotal, double saldoPagar) {
         this.emissao = emissao;
         this.numeroParcelas = numeroParcelas;
         this.situacao = situacao;
         this.valorTotal = valorTotal;
+        this.saldoPagar = saldoPagar;
     }
 
     public String toString(){
-        return "id da fatura: " + idFatura + " data de emissao: " + emissao + " numero de parcelas: " + numeroParcelas + " situacao atual: " + situacao + " valor total: " + valorTotal;
+        return "id da fatura: " + idFatura + " data de emissao: " + emissao + " numero de parcelas: " + numeroParcelas + " situacao atual: " + situacao + " valor total: " + valorTotal + " saldo a pagar" + saldoPagar;
     }
 
 }
