@@ -18,8 +18,7 @@ public class Telefone {
     @JoinColumn(name="id_cliente")
     private Cliente cliente;
 
-    public Telefone() {
-    }
+    public Telefone() { }
 
     public Telefone(String telefone) {
         this.telefone = telefone;
