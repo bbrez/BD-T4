@@ -16,7 +16,11 @@ public class Fatura{
     int numeroParcelas;
     String situacao;
     double valorTotal;
+<<<<<<< HEAD
     double saldoPagar;
+=======
+    double saldoPagar
+>>>>>>> master
 
     @ManyToOne
     @JoinColumn(name="id_cliente")
