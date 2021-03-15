@@ -11,7 +11,11 @@ public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEndereco;
+
+    @Column(nullable=false)
     private String logradouro;
+
+    @Column(nullable=false, unique=true)
     private String CEP;
 
     @ManyToOne

@@ -12,10 +12,19 @@ public class Fatura{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idFatura;
 
+    @Column(nullable=false)
     Date emissao;
+
+    @Column(nullable=false)
     int numeroParcelas;
+
+    @Column(nullable=false)
     String situacao;
+
+    @Column(nullable=false)
     double valorTotal;
+
+    @Column(nullable=false)
     double saldoPagar;
 
     @ManyToOne

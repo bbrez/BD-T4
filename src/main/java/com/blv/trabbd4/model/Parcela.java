@@ -13,8 +13,13 @@ public class Parcela {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idParcela;
 
+    @Column(nullable=false)
     double ValorParcela;
+
+    @Column(nullable=false)
     Date vencimento;
+
+    @Column(nullable=false)
     String situacao;
 
     @ManyToOne

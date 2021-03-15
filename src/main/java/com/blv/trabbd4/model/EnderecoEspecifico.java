@@ -10,7 +10,11 @@ public class EnderecoEspecifico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEnderecoEspecifico;
+
+    @Column(nullable=false, unique=true)
     private Long numero;
+
+    @Column
     private String complemento;
 
     @ManyToOne

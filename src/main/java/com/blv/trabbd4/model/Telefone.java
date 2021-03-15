@@ -10,6 +10,8 @@ public class Telefone {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idTelefone;
+
+    @Column(nullable=false, unique=true)
     private String telefone;
 
     @ManyToOne

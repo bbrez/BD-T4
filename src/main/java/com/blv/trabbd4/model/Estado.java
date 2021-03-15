@@ -12,6 +12,7 @@ public class Estado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEstado;
 
+    @Column(nullable=false, unique=true)
     private String UF;
 
     @OneToMany(mappedBy = "estado", fetch = FetchType.EAGER)

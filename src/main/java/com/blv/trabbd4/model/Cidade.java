@@ -11,6 +11,8 @@ public class Cidade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCidade;
+
+    @Column(nullable=false)
     private String nome;
 
     @ManyToOne

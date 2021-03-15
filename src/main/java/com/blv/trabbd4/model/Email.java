@@ -10,6 +10,8 @@ public class Email {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idEmail;
+
+    @Column(nullable=false, unique=true)
     private String email;
 
     @ManyToOne
