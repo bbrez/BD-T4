@@ -43,10 +43,10 @@ public class TrabalhoBd4Application implements CommandLineRunner {
         log.info("Start Application...\n");
 
         List<Parcela> parcelas = new ArrayList<>();
-        parcelas.add(new Parcela(10, new Date(),  EstadoParcela.Paga));
-        parcelas.add(new Parcela(11, new Date(),  EstadoParcela.Atrasada));
-        parcelas.add(new Parcela(12, new Date(),  EstadoParcela.Pendente));
-        parcelas.add(new Parcela(13, new Date(),  EstadoParcela.Paga));
+        parcelas.add(new Parcela(10, new Date(),  EstadoPagamento.Paga));
+        parcelas.add(new Parcela(11, new Date(),  EstadoPagamento.Atrasada));
+        parcelas.add(new Parcela(12, new Date(),  EstadoPagamento.Pendente));
+        parcelas.add(new Parcela(13, new Date(),  EstadoPagamento.Paga));
 
         faturaRepository.save(new Fatura(new Date(), 4, "pendente", parcelas));
         parcelas.forEach(k -> k.setPagamento(new Date()));
