@@ -16,20 +16,20 @@ public class Cliente {
     private String cpf;
 
     @ManyToOne
-    @JoinColumn(name="id_endereco")
+    @JoinColumn(name="id_endereco_residencial")
     private EnderecoEspecifico enderecoResidencial;
 
     @ManyToOne
-    @JoinColumn(name="id_endereco")
+    @JoinColumn(name="id_endereco_comercial")
     private EnderecoEspecifico enderecoComercial;
 
-    @OneToMany(mappedBy = "telefones", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
     private List<Telefone> telefones;
 
-    @OneToMany(mappedBy = "faturas", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
     private List<Fatura> faturas;
 
-    @OneToMany(mappedBy = "emails", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
     private List<Email> emails;
 
     public Cliente(){}

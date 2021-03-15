@@ -3,6 +3,7 @@ package com.blv.trabbd4;
 import com.blv.trabbd4.model.Cidade;
 import com.blv.trabbd4.model.Estado;
 import com.blv.trabbd4.repository.CidadeRepository;
+import com.blv.trabbd4.repository.EmailRepository;
 import com.blv.trabbd4.repository.EstadoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,14 +19,14 @@ public class TrabalhoBd4Application implements CommandLineRunner {
 
     private static final Logger log = LoggerFactory.getLogger(TrabalhoBd4Application.class);
 
+    @Autowired EstadoRepository repositoryEstado;
+
     @Autowired
     private EmailRepository repositoryEmail;
 
     @Autowired
     private CidadeRepository repositoryCidade;
 
-    @Autowired
-    private CidadeRepository repositoryCidade;
 
     public static void main(String[] args) {
         SpringApplication.run(TrabalhoBd4Application.class, args);
