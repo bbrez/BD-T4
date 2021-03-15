@@ -18,14 +18,14 @@ public class Parcela {
     Date pagamento = null;
 
     @Enumerated
-    EstadoParcela situacao;
+    EstadoPagamento situacao;
 
     @ManyToOne
     Fatura fatura;
 
     public Parcela(){}
 
-    public Parcela(double valorParcela, Date vencimento, EstadoParcela situacao) {
+    public Parcela(double valorParcela, Date vencimento, EstadoPagamento situacao) {
         ValorParcela = valorParcela;
         this.vencimento = vencimento;
         this.situacao = situacao;
