@@ -30,7 +30,7 @@ public class Parcela {
     public Parcela(){}
 
     public Parcela(double valorParcela, Date vencimento, EstadoPagamento situacao, Fatura fatura) {
-        valorParcela = valorParcela;
+        this.valorParcela = valorParcela;
         this.vencimento = vencimento;
         this.situacao = situacao;
         this.fatura = fatura;
@@ -47,6 +47,6 @@ public class Parcela {
         String pago;
         if (pagamento != null) pago = vencimento.toString();
         else pago = "";
-        return "id da parcela: " + idParcela + " vencimento: " + vencimento + " situacao atual: " + pago + "  " + situacao + " pertencente a fatura: " + fatura.getId();
+        return "id da parcela: " + idParcela + " vencimento: " +  vencimento +" valor da parcela " + valorParcela + " situacao atual: " + pago + "  " + situacao + " pertencente a fatura: " + fatura.getId();
     }
 }
