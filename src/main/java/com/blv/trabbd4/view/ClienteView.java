@@ -190,10 +190,12 @@ public class ClienteView {
                         cpf = s.nextLine();
 
                         c = repoCliente.findByCpf(cpf);
-
-                        System.out.println(c);
-                        for (Fatura f : c.getFaturas()) {
-                            System.out.println(f);
+                        if (c == null) System.out.println("cliente nao encontrado");
+                        else {
+                            System.out.println(c);
+                            for (Fatura f : c.getFaturas()) {
+                                System.out.println(f);
+                            }
                         }
                     }
                     if (k == 2) {
@@ -203,7 +205,6 @@ public class ClienteView {
 
                         System.out.print("Sobrenome: ");
                         sobrenome = s.nextLine();
-
                         c = repoCliente.findByNomeAndSobrenome(nome, sobrenome);
                         if (c == null) {
                             System.out.println("cliente nao encontrado");
@@ -214,7 +215,7 @@ public class ClienteView {
                             }
                         }
                     }
-
+                    break;
                 case 5:
                     nomeDivida();
                     break;
