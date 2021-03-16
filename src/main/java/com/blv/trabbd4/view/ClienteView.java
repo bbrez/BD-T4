@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Scanner;//
 
+//TODO: TOTAL A PAGAR DA SOMA DAS FATURAS DO CLIENTE
 public class ClienteView {
     private boolean running;
 
@@ -163,6 +164,37 @@ public class ClienteView {
                     System.out.println(repoCliente.findByNomeAndSobrenome(nome, sobrenome));
                     break;
 
+                case 4:
+                    System.out.println("Deseja procurar por CPF ou pelo nome?");
+                    System.out.println("1 para procurar pelo CPF");
+                    System.out.println("2 para procurar pelo nome");
+
+                    int k = s.nextInt();
+
+                    if(k == 1){
+                        System.out.println("CPF: ");
+                        cpf = s.nextLine();
+
+                        c = repoCliente.findByCpf(cpf);
+
+                        System.out.println(c);
+                        for(Fatura f: c.getFaturas()){
+                            System.out.println(f);
+                        }
+                    }
+                    if(k == 2){
+                        System.out.print("Nome: ");
+                        nome = s.nextLine();
+
+                        System.out.print("Sobrenome: ");
+                        sobrenome = s.nextLine();
+
+                        c = repoCliente.findByNomeAndSobrenome(nome, sobrenome);
+                        System.out.println(c);
+                        for(Fatura f: c.getFaturas()){
+                            System.out.println(f);
+                        }
+                    }
 
                 case 0:
                     this.running = false;
