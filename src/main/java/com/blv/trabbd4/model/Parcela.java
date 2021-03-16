@@ -47,6 +47,6 @@ public class Parcela {
         String pago;
         if (pagamento != null) pago = vencimento.toString();
         else pago = "";
-        return "id da parcela: " + idParcela + " vencimento: " + vencimento + " situacao atual: " + pago + "  " + situacao + " pertencente a fatura: " + fatura.getId();
+        return "id da parcela: " + idParcela + " vencimento: " + vencimento + " situacao atual: " + situacao + "  " + pago;
     }
 }

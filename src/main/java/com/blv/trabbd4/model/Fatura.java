@@ -21,7 +21,7 @@ public class Fatura{
     @Column(nullable=false)
     int numeroParcelas;
 
-    @Column(nullable=false)
+    @Column
     String situacao;
 
     @Column(nullable=false)

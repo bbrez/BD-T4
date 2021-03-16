@@ -1,9 +1,6 @@
 package com.blv.trabbd4.view;
 
-import com.blv.trabbd4.model.Estado;
-import com.blv.trabbd4.model.EstadoPagamento;
-import com.blv.trabbd4.model.Fatura;
-import com.blv.trabbd4.model.Parcela;
+import com.blv.trabbd4.model.*;
 import com.blv.trabbd4.repository.ClienteRepository;
 import com.blv.trabbd4.repository.FaturaRepository;
 import com.blv.trabbd4.repository.ParcelaRepository;
@@ -38,15 +35,16 @@ public class FaturaView {
             System.out.println("Digite 1 para cadastrar uma fatura");
             System.out.println("Digite 2 para mostrar todas as faturas");
             System.out.println("Digite 3 para mostrar todas as parcelas de uma fatura");
-            System.out.println("Digite 4 Altera a situacao da fatura");
+            System.out.println("Digite 4 Altera a situacao da parcela");
             System.out.println("Digite 5 imprime fatura nao pagas");
-            System.out.println("Digite 6 imprime fatura pagas em uma determinada data");
+            System.out.println("Digite 6 imprime parcelas pagas em uma determinada data");
             int selected = s.nextInt();
             switch(selected){
                 case 1: //Cadastra Fatura
                     Fatura f = new Fatura();
 
                     System.out.println("Data de Emissão: ");
+                    s.nextLine();
                     String str = s.nextLine();
                     DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                     Date date = formatter.parse(str);
@@ -57,21 +55,27 @@ public class FaturaView {
                     f.setNumeroParcelas(s.nextInt());
 
                     System.out.println("Valor total da fatura: ");
-                    f.setValorTotal(s.nextInt());
+                    f.setValorTotal(s.nextDouble());
 
                     for(int i = 0; i < f.getNumeroParcelas(); ++i){
 
-                        System.out.println("Parcela numero " + i);
+                        System.out.println("Parcela numero " + (i+1));
                         System.out.println("Valor da parcela: ");
                         Double v = s.nextDouble();
 
                         System.out.println("Data de vencimento: ");
+                        s.nextLine();
                         str = s.nextLine();
                         date = formatter.parse(str);
 
                         Parcela p = new Parcela(v, date, EstadoPagamento.Pendente);
-
+                        if(f.getParcelas() == null){
+                            f.setParcelas(new LinkedList<>());
+                        }
                         f.getParcelas().add(p);
+                        repoFatura.save(f);
+                        p.setFatura(f);
+                        repoParcela.save(p);
                     }
 
                     int soma = 0;
@@ -82,7 +86,14 @@ public class FaturaView {
                         }
                     }
 
+                    System.out.println("Entre com o cpf do cliente que recebera a fatura");
+                    Cliente cl = repoCliente.findByCpf(s.nextLine());
+
+                    f.setCliente(cl);
+
                     f.setSaldoPagar(soma);
+                    System.out.println(f);
+                    repoFatura.save(f);
 
                     break;
                 case 2: //Mostra todas as faturas
@@ -100,6 +111,8 @@ public class FaturaView {
                         System.out.println(par);
                     }
 
+                    break;
+
                 case 4: //Altera situaçao
 
                     System.out.println("Entre com o id da parcela: ");
@@ -112,15 +125,21 @@ public class FaturaView {
                     if(x == 1){
                         par.get().setSituacao(EstadoPagamento.Paga);
                         System.out.println("Entre com a data do pagamento: ");
+                        s.nextLine();
                         str = s.nextLine();
                         formatter = new SimpleDateFormat("dd/MM/yyyy");
                         date = formatter.parse(str);
                         par.get().setPagamento(date);
+                        par.get().setSituacao(EstadoPagamento.Paga);
+
                     }
 
                     if(x == 0){
                         par.get().setSituacao(EstadoPagamento.Cancelada);
                     }
+
+                    repoParcela.save(par.get());
+
 
                     fat = Optional.of(par.get().getFatura());
 
@@ -149,6 +168,7 @@ public class FaturaView {
                 case 6: //Imprime as datas que foram pagas em determinado dia
 
                     System.out.println("Entre com o dia de pagamento das parcelas: ");
+                    s.nextLine();
                     str = s.nextLine();
                     formatter = new SimpleDateFormat("dd/MM/yyyy");
                     date = formatter.parse(str);

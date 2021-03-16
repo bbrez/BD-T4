@@ -154,6 +154,8 @@ public class ClienteView {
                         c.setEnderecoComercial(getEndereco());
                     }
 
+                    repoCliente.save(c);
+
                     break;
                 case 2: //Procura Cliente CPF
                     System.out.print("CPF: ");
