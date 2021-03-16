@@ -14,7 +14,7 @@ public class Parcela {
     private Long idParcela;
 
     @Column(nullable=false)
-    double ValorParcela;
+    double valorParcela;
 
     @Column(nullable=false)
     Date vencimento;
@@ -30,10 +30,16 @@ public class Parcela {
     public Parcela(){}
 
     public Parcela(double valorParcela, Date vencimento, EstadoPagamento situacao, Fatura fatura) {
-        ValorParcela = valorParcela;
+        valorParcela = valorParcela;
         this.vencimento = vencimento;
         this.situacao = situacao;
         this.fatura = fatura;
+    }
+
+    public Parcela(Double v, Date date, EstadoPagamento estadoPagamento) {
+        this.valorParcela = v;
+        this.vencimento = date;
+        this.situacao = estadoPagamento;
     }
 
     @Override

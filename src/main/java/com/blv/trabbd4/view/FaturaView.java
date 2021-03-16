@@ -10,6 +10,7 @@ import com.blv.trabbd4.repository.ParcelaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -24,7 +25,9 @@ public class FaturaView {
     ClienteRepository repoCliente;
 
 
-    public FaturaView(){
+    private boolean running;
+
+    public FaturaView() throws ParseException {
 
         this.running = true;
 
@@ -52,7 +55,7 @@ public class FaturaView {
 
                         System.out.println("Parcela numero " + i);
                         System.out.println("Valor da parcela: ");
-                        int v = s.nextInt();
+                        Double v = s.nextDouble();
 
                         System.out.println("Data de vencimento: ");
                         str = s.nextLine();
@@ -67,7 +70,7 @@ public class FaturaView {
 
                     for(Parcela p:f.getParcelas()){
                         if(p.getSituacao() == EstadoPagamento.Pendente){
-                            soma += p.getValor();
+                            soma += p.getValorParcela();
                         }
                     }
 
@@ -85,7 +88,7 @@ public class FaturaView {
                     System.out.println("Entre com o id da fatura que deseja ver as parcelas: ");
                     Optional<Fatura> fat = repoFatura.findById(s.nextLong());
 
-                    for(Parcela par: fat.getParcelas()){
+                    for(Parcela par: fat.get().getParcelas()){
                         System.out.println(par);
                     }
 
@@ -99,34 +102,36 @@ public class FaturaView {
                     x = s.nextInt();
 
                     if(x == 1){
-                        par.setSituacao(EstadoPagamento.Paga);
+                        par.get().setSituacao(EstadoPagamento.Paga);
                         System.out.println("Entre com a data do pagamento: ");
                         str = s.nextLine();
                         formatter = new SimpleDateFormat("dd/MM/yyyy");
                         date = formatter.parse(str);
-                        par.setPagamento(date);
+                        par.get().setPagamento(date);
                     }
 
                     if(x == 0){
-                        par.setSituacao(EstadoPagamento.Cancelada);
+                        par.get().setSituacao(EstadoPagamento.Cancelada);
                     }
-                    fat = par.getFatura();
 
-                    fat.setSaldoPagar((fat.getSaldoPagar() - par.getValor()));
+                    fat = Optional.of(par.get().getFatura());
+
+                    fat.get().setSaldoPagar((fat.get().getSaldoPagar() - par.get().getValorParcela()));
 
                     break;
 
                 case 5: //Imprime faturas que ainda nao foram pagas
 
-                    List<Fatura> lfat = repoFatura.findAll();
+                    Iterable<Fatura> lfat = repoFatura.findAll();
                     for(Fatura f1: lfat){
                         boolean verifica = false;
                         for(Parcela p1: f1.getParcelas()){
-                            if(p1.getSituacao() == EstadoPagamento.Pendente){
+                            if (p1.getSituacao() == EstadoPagamento.Pendente) {
                                 verifica = true;
+                                break;
                             }
                         }
-                        if(verifica == true){
+                        if(verifica){
                             System.out.println(f1);
                         }
                     }
@@ -140,7 +145,7 @@ public class FaturaView {
                     formatter = new SimpleDateFormat("dd/MM/yyyy");
                     date = formatter.parse(str);
                     Calendar c = Calendar.getInstance();
-                    c.set(formatter.parse(str));
+                    c.setTime(date);
                     c.add(Calendar.DAY_OF_MONTH, 1);
                     for(Parcela parc: repoParcela.findByPagamentoBetween(date, c)){
                         System.out.println(parc);

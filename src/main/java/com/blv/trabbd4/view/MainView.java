@@ -16,7 +16,11 @@ public class MainView {
                     ClienteView cv = new ClienteView();
                     break;
                 case 2: //Fatura
-                    FaturaView fv = new FaturaView();
+                    try{
+                        FaturaView fv = new FaturaView();
+                    } catch (Exception e) {
+                        System.exit(1);
+                    }
                     break;
                 case 0: //Sair
                     this.running = false;
