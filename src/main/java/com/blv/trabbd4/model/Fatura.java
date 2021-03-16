@@ -56,6 +56,14 @@ public class Fatura{
         this.parcelas = parcelas;
     }
 
+<<<<<<< HEAD
+=======
+    public void setParcela(List<Parcela> parcelas) {
+        parcelas.forEach((k) -> k.setFatura(this));
+        this.parcelas = parcelas;
+    }
+
+>>>>>>> parcelas
     public Long getId() {
         return this.idFatura;
     }
