@@ -1,10 +1,17 @@
 package com.blv.trabbd4.view;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
 import java.util.Scanner;
 
+@Controller
 public class MainView {
 
-    public static void MainView(){
+    @Autowired
+    ClienteView cv;
+
+    public void viewMenu(){
         boolean running = true;
         Scanner s = new Scanner(System.in);
         while(running) {
@@ -14,8 +21,7 @@ public class MainView {
             int selected = s.nextInt();
             switch (selected) {
                 case 1: //Cliente
-                    ClienteView cv = new ClienteView();
-                    cv.menu();
+                    this.cv.menu();
                     break;
                 case 2: //Fatura
                     try{

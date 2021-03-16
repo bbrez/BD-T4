@@ -3,12 +3,14 @@ package com.blv.trabbd4.view;
 import com.blv.trabbd4.model.*;
 import com.blv.trabbd4.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;//
 
 //TODO: TOTAL A PAGAR DA SOMA DAS FATURAS DO CLIENTE
+@Controller
 public class ClienteView {
     private boolean running;
 

@@ -13,7 +13,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
@@ -48,6 +47,9 @@ public class TrabalhoBd4Application implements CommandLineRunner {
     @Autowired
     TelefoneRepository telefoneRepository;
 
+    @Autowired
+    MainView mainView;
+
 
     public static void main(String[] args) {
         SpringApplication.run(TrabalhoBd4Application.class, args);
@@ -61,7 +63,7 @@ public class TrabalhoBd4Application implements CommandLineRunner {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        MainView.MainView();
+        mainView.viewMenu();
 /*
         estadoRepository.findAll().forEach(System.out::println);
         cidadeRepository.findAll().forEach(System.out::println);
