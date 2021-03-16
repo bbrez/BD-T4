@@ -44,7 +44,7 @@ public class TrabalhoBd4Application implements CommandLineRunner {
 
         List<Parcela> parcelas = new ArrayList<>();
         parcelas.add(new Parcela(10, new Date(),  EstadoPagamento.Paga));
-        parcelas.add(new Parcela(11, new Date(),  EstadoPagamento.Atrasada));
+        parcelas.add(new Parcela(11, new Date(),  EstadoPagamento.Cancelada));
         parcelas.add(new Parcela(12, new Date(),  EstadoPagamento.Pendente));
         parcelas.add(new Parcela(13, new Date(),  EstadoPagamento.Paga));
 

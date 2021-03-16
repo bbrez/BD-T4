@@ -26,6 +26,7 @@ public class ClienteView {
     @Autowired
     EstadoRepository repoEstado;
 
+
     public EnderecoEspecifico getEndereco(){
         EnderecoEspecifico ee = null;
 
@@ -161,6 +162,7 @@ public class ClienteView {
 
                     System.out.println(repoCliente.findByNomeAndSobrenome(nome, sobrenome));
                     break;
+
 
                 case 0:
                     this.running = false;

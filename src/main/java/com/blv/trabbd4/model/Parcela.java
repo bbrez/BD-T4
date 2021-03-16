@@ -18,6 +18,8 @@ public class Parcela {
 
     @Column(nullable=false)
     Date vencimento;
+
+    @Column(nullable=false)
     Date pagamento = null;
 
     @Enumerated
