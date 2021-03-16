@@ -9,7 +9,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;//
 
-//TODO: TOTAL A PAGAR DA SOMA DAS FATURAS DO CLIENTE
 @Controller
 public class ClienteView {
     private boolean running;
@@ -28,6 +27,9 @@ public class ClienteView {
 
     @Autowired
     EstadoRepository repoEstado;
+
+    @Autowired
+    ParcelaRepository parcelaRepository;
 
 
     public EnderecoEspecifico getEndereco() {
@@ -103,6 +105,7 @@ public class ClienteView {
             System.out.println("Digite 2 para pesquisar por CPF");
             System.out.println("Digite 3 para pesquisar por nome");
             System.out.println("Digite 4 para imprimir as faturas de um cliente");
+            System.out.println("Digite 5 para imprimer o nome e o saldo a pagar");
             int selected = s.nextInt();
             switch (selected) {
                 case 1: //Cadastra Cliente        System.out.println("Digite 1 para cadastrar um  cliente");
@@ -214,13 +217,19 @@ public class ClienteView {
                         }
                     }
 
-                case 0:
+                case 5:
+                    nomeDivida();
+                    break;
                 default:
                     this.running = false;
                     break;
 
             }
         }
+    }
+
+    private void nomeDivida() {
+        repoCliente.findAll().forEach(k -> System.out.println(k.getNome() + " valor total devido: " + k.getFaturas().stream().mapToDouble(a -> parcelaRepository.findByFaturaAndSituacao(a, EstadoPagamento.Pendente).stream().mapToDouble(Parcela::getValorParcela).sum()).sum()));
     }
 
     public ClienteView() {

@@ -30,7 +30,7 @@ public class Parcela {
     public Parcela(){}
 
     public Parcela(double valorParcela, Date vencimento, EstadoPagamento situacao, Fatura fatura) {
-        valorParcela = valorParcela;
+        this.valorParcela = valorParcela;
         this.vencimento = vencimento;
         this.situacao = situacao;
         this.fatura = fatura;
