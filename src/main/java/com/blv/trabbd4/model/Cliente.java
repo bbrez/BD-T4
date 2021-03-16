@@ -45,4 +45,13 @@ public class Cliente {
         this.cpf = cpf;
     }
 
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "idCliente=" + idCliente +
+                ", nome='" + nome + '\'' +
+                ", sobrenome='" + sobrenome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                '}';
+    }
 }
