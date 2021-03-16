@@ -22,7 +22,7 @@ public class Endereco {
     @JoinColumn(name="id_cidade", nullable = false)
     private Cidade cidade;
 
-    @OneToMany(mappedBy = "endereco")
+    @OneToMany(mappedBy = "endereco", fetch = FetchType.EAGER)
     private List<EnderecoEspecifico> enderecoEspecificos;
 
     public Endereco(){}
@@ -31,5 +31,9 @@ public class Endereco {
         this.logradouro = logradouro;
         this.CEP = CEP;
         this.cidade = cidade;
+    }
+
+    public String toString(){
+        return "id: " + idEndereco + "  logradouro: " + logradouro + " CEP: " + CEP + "Enderecos especificos: " + enderecoEspecificos.size();
     }
 }
