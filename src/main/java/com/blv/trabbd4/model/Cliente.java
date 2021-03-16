@@ -56,11 +56,4 @@ public class Cliente {
         this.telefones = new ArrayList<>();
     }
 
-    public void setEnderecoResidencial(EnderecoEspecifico enderecoResidencial) {
-        this.enderecoResidencial = enderecoResidencial;
-    }
-
-    public void setEnderecoComercial(EnderecoEspecifico enderecoComercial) {
-        this.enderecoComercial = enderecoComercial;
-    }
 }

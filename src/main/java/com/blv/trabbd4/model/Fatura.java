@@ -50,15 +50,6 @@ public class Fatura{
         return "id da fatura: " + idFatura + " data de emissao: " + emissao + " numero de parcelas: " + numeroParcelas + " valor total: " + valorTotal;
     }
 
-    public void setParcela(List<Parcela> parcelas) {
-        parcelas.forEach((k) -> k.setFatura(this));
-        this.parcelas = parcelas;
-    }
-
-    public void setParcela(List<Parcela> parcelas) {
-        parcelas.forEach((k) -> k.setFatura(this));
-        this.parcelas = parcelas;
-    }
 
     public Long getId() {
         return this.idFatura;
