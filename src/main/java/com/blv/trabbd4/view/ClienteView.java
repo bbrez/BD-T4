@@ -10,7 +10,6 @@ import java.util.Scanner;//
 
 //TODO: TOTAL A PAGAR DA SOMA DAS FATURAS DO CLIENTE
 public class ClienteView {
-
     private boolean running;
 
     @Autowired
