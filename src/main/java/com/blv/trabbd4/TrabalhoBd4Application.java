@@ -1,10 +1,7 @@
 package com.blv.trabbd4;
 
-import com.blv.trabbd4.model.Cidade;
-import com.blv.trabbd4.model.Estado;
-import com.blv.trabbd4.repository.CidadeRepository;
-import com.blv.trabbd4.repository.EmailRepository;
-import com.blv.trabbd4.repository.EstadoRepository;
+import com.blv.trabbd4.model.*;
+import com.blv.trabbd4.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +9,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @SpringBootApplication
 public class TrabalhoBd4Application implements CommandLineRunner {
@@ -27,6 +28,11 @@ public class TrabalhoBd4Application implements CommandLineRunner {
     @Autowired
     private CidadeRepository repositoryCidade;
 
+    @Autowired
+    private ParcelaRepository parcelaRepository;
+
+    @Autowired
+    private FaturaRepository faturaRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(TrabalhoBd4Application.class, args);
@@ -36,6 +42,25 @@ public class TrabalhoBd4Application implements CommandLineRunner {
     public void run(String... args){
         log.info("Start Application...\n");
 
+        List<Parcela> parcelas = new ArrayList<>();
+        parcelas.add(new Parcela(10, new Date(),  EstadoPagamento.Paga));
+        parcelas.add(new Parcela(11, new Date(),  EstadoPagamento.Atrasada));
+        parcelas.add(new Parcela(12, new Date(),  EstadoPagamento.Pendente));
+        parcelas.add(new Parcela(13, new Date(),  EstadoPagamento.Paga));
+
+        faturaRepository.save(new Fatura(new Date(), 4, "pendente", parcelas));
+        parcelas.forEach(k -> k.setPagamento(new Date()));
+        parcelaRepository.saveAll(parcelas);
+
+        parcelaRepository.findAll().forEach(System.out::println);
+        try {
+            parcelaRepository.findByPagamento(new SimpleDateFormat("yyy-MM-dd").parse("2021-15-03")).forEach(System.out::println);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        faturaRepository.findAll().forEach(System.out::println);
+/*
         Estado pr = new Estado("PR");
         repositoryEstado.save(pr);
 
@@ -59,5 +84,7 @@ public class TrabalhoBd4Application implements CommandLineRunner {
 
         System.out.println("Cidade - findAll()");
         repositoryCidade.findAll().forEach(System.out::println);
+
+ */
     }
 }
