@@ -29,7 +29,7 @@ public class ClienteView {
     EstadoRepository repoEstado;
 
 
-    public EnderecoEspecifico getEndereco(){
+    public EnderecoEspecifico getEndereco() {
         EnderecoEspecifico ee = null;
 
         System.out.println("1 - Novo");
@@ -39,28 +39,28 @@ public class ClienteView {
         Scanner s = new Scanner(System.in);
         int opc = s.nextInt();
 
-        if(opc == 1){
+        if (opc == 1) {
             ee = new EnderecoEspecifico();
 
             System.out.print("CEP do Endereço: ");
             String cep = s.nextLine();
             Endereco e = repoEndereco.findByCEP(cep);
 
-            if(e == null){
+            if (e == null) {
                 e = new Endereco();
                 System.out.println("CEP não encontrado, criando um novo:");
 
                 System.out.print("Estado (UF):");
                 String estado = s.nextLine();
                 Estado es = repoEstado.findByUF(estado);
-                if(es == null){
+                if (es == null) {
                     es = new Estado(estado);
                 }
 
                 System.out.print("Cidade:");
                 String cidade = s.nextLine();
                 Cidade c = repoCidade.findByNome(cidade);
-                if(c == null){
+                if (c == null) {
                     c = new Cidade(cidade, es);
                     c.getEnderecos().add(e);
                     es.getCidades().add(c);
@@ -81,7 +81,7 @@ public class ClienteView {
             ee.setEndereco(e);
             e.getEnderecoEspecificos().add(ee);
 
-        } else if(opc == 2){
+        } else if (opc == 2) {
             System.out.print("CEP: ");
             String cep = s.nextLine();
             System.out.print("Numero: ");
@@ -92,14 +92,18 @@ public class ClienteView {
         return ee;
     }
 
-    public ClienteView() {
+    public void menu() {
         this.running = true;
 
         Scanner s = new Scanner(System.in);
+        System.out.println("Digite 1 para cadastrar um  cliente");
+        System.out.println("Digite 2 para pesquisar por CPF");
+        System.out.println("Digite 3 para pesquisar por nome");
         while (this.running) {
             int selected = s.nextInt();
             switch (selected) {
-                case 1: //Cadastra Cliente
+                case 1: //Cadastra Cliente        System.out.println("Digite 1 para cadastrar um  cliente");
+
                     Cliente c = new Cliente();
 
                     System.out.print("Nome: ");
@@ -116,7 +120,7 @@ public class ClienteView {
                     int num_tel = s.nextInt();
                     List<Telefone> telefoneList = new LinkedList<>();
 
-                    for(int i = 0 ; i<num_tel ; ++i){
+                    for (int i = 0; i < num_tel; ++i) {
                         System.out.print("Numero de telefone (" + i + "): ");
                         Telefone t = new Telefone(s.nextLine());
                         t.setCliente(c);
@@ -130,7 +134,7 @@ public class ClienteView {
                     int num_email = s.nextInt();
                     List<Email> emailList = new LinkedList<>();
 
-                    for(int i = 0 ; i<num_tel ; ++i){
+                    for (int i = 0; i < num_tel; ++i) {
                         System.out.print("Endereço de email (" + i + "): ");
                         Email e = new Email();
                         e.setCliente(c);
@@ -143,7 +147,7 @@ public class ClienteView {
                     c.setEnderecoResidencial(getEndereco());
                     System.out.println("Endereço Comercial?");
                     System.out.println("1 - Sim / 2 - Não");
-                    if(s.nextInt() == 1){
+                    if (s.nextInt() == 1) {
                         c.setEnderecoComercial(getEndereco());
                     }
 
@@ -198,12 +202,15 @@ public class ClienteView {
                     }
 
                 case 0:
+                default:
                     this.running = false;
                     break;
 
             }
         }
+    }
 
+    public ClienteView() {
     }
 
 }

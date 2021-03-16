@@ -2,6 +2,7 @@ package com.blv.trabbd4;
 
 import com.blv.trabbd4.model.*;
 import com.blv.trabbd4.repository.*;
+import com.blv.trabbd4.view.MainView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,14 +54,15 @@ public class TrabalhoBd4Application implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args){
+    public void run(String... args) {
         log.info("Start Application...\n");
         try {
             popula();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
+        MainView.MainView();
+/*
         estadoRepository.findAll().forEach(System.out::println);
         cidadeRepository.findAll().forEach(System.out::println);
         enderecoRepository.findAll().forEach(System.out::println);
@@ -70,6 +72,7 @@ public class TrabalhoBd4Application implements CommandLineRunner {
         clienteRepository.findAll().forEach(System.out::println);
         faturaRepository.findAll().forEach(System.out::println);
         parcelaRepository.findAll().forEach(System.out::println);
+*/
     }
 
     public void popula() throws ParseException {
@@ -113,7 +116,7 @@ public class TrabalhoBd4Application implements CommandLineRunner {
         telefoneRepository.save(new Telefone("3028-6071", leo));
         telefoneRepository.save(new Telefone("99921-3387", bruno));
         telefoneRepository.save(new Telefone("98803-6071", joao));
-        Fatura fatura1 = new Fatura(new SimpleDateFormat("yyyy-MM-dd").parse("2021-03-20"), 3, 600, leo );
+        Fatura fatura1 = new Fatura(new SimpleDateFormat("yyyy-MM-dd").parse("2021-03-20"), 3, 600, leo);
         Fatura fatura2 = new Fatura(new SimpleDateFormat("yyyy-MM-dd").parse("2021-04-13"), 1, 1000, bruno);
         Fatura fatura3 = new Fatura(new SimpleDateFormat("yyyy-MM-dd").parse("2021-04-20"), 2, 1100, leo);
         Fatura fatura4 = new Fatura(new SimpleDateFormat("yyyy-MM-dd").parse("2021-03-28"), 1, 700, joao);
@@ -123,9 +126,9 @@ public class TrabalhoBd4Application implements CommandLineRunner {
         faturaRepository.save(fatura3);
         faturaRepository.save(fatura4);
         faturaRepository.save(fatura5);
-        parcelaRepository.save(new Parcela(200, new SimpleDateFormat("dd/MM/yyy").parse("20/04/2021"),EstadoPagamento.Pendente, fatura1));
-        parcelaRepository.save(new Parcela(200, new SimpleDateFormat("dd/MM/yyy").parse("20/05/2021"),EstadoPagamento.Pendente, fatura1));
-        parcelaRepository.save(new Parcela(200, new SimpleDateFormat("dd/MM/yyy").parse("20/06/2021"),EstadoPagamento.Pendente, fatura1));
+        parcelaRepository.save(new Parcela(200, new SimpleDateFormat("dd/MM/yyy").parse("20/04/2021"), EstadoPagamento.Pendente, fatura1));
+        parcelaRepository.save(new Parcela(200, new SimpleDateFormat("dd/MM/yyy").parse("20/05/2021"), EstadoPagamento.Pendente, fatura1));
+        parcelaRepository.save(new Parcela(200, new SimpleDateFormat("dd/MM/yyy").parse("20/06/2021"), EstadoPagamento.Pendente, fatura1));
         parcelaRepository.save(new Parcela(1000, new SimpleDateFormat("dd/MM/yyy").parse("13/05/2021"), EstadoPagamento.Pendente, fatura2));
         parcelaRepository.save(new Parcela(550, new SimpleDateFormat("dd/MM/yyy").parse("20/05/2021"), EstadoPagamento.Pendente, fatura3));
         parcelaRepository.save(new Parcela(550, new SimpleDateFormat("dd/MM/yyy").parse("20/06/2021"), EstadoPagamento.Pendente, fatura3));

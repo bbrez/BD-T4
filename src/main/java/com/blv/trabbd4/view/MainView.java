@@ -3,17 +3,19 @@ package com.blv.trabbd4.view;
 import java.util.Scanner;
 
 public class MainView {
-    private boolean running;
 
-    public MainView(){
-        this.running = true;
-
+    public static void MainView(){
+        boolean running = true;
         Scanner s = new Scanner(System.in);
-        while(this.running) {
+        while(running) {
+            System.out.println("Digite 1 para visualizar cliente");
+            System.out.println("Digite 2 para visualizar fatura");
+            System.out.println("Digite 0 para sair");
             int selected = s.nextInt();
             switch (selected) {
                 case 1: //Cliente
                     ClienteView cv = new ClienteView();
+                    cv.menu();
                     break;
                 case 2: //Fatura
                     try{
@@ -22,8 +24,8 @@ public class MainView {
                         System.exit(1);
                     }
                     break;
-                case 0: //Sair
-                    this.running = false;
+                default: //Sair
+                    running = false;
                     break;
 
             }
