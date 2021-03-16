@@ -97,10 +97,12 @@ public class ClienteView {
         this.running = true;
 
         Scanner s = new Scanner(System.in);
-        System.out.println("Digite 1 para cadastrar um  cliente");
-        System.out.println("Digite 2 para pesquisar por CPF");
-        System.out.println("Digite 3 para pesquisar por nome");
+
         while (this.running) {
+            System.out.println("Digite 1 para cadastrar um  cliente");
+            System.out.println("Digite 2 para pesquisar por CPF");
+            System.out.println("Digite 3 para pesquisar por nome");
+            System.out.println("Digite 4 para imprimir as faturas de um cliente");
             int selected = s.nextInt();
             switch (selected) {
                 case 1: //Cadastra Cliente        System.out.println("Digite 1 para cadastrar um  cliente");
@@ -155,6 +157,7 @@ public class ClienteView {
                     break;
                 case 2: //Procura Cliente CPF
                     System.out.print("CPF: ");
+                    s.nextLine();
                     String cpf = s.nextLine();
 
                     System.out.println(repoCliente.findByCpf(cpf));
@@ -162,6 +165,7 @@ public class ClienteView {
 
                 case 3: //Procura Cliente Nome
                     System.out.print("Nome: ");
+                    s.nextLine();
                     String nome = s.nextLine();
 
                     System.out.print("Sobrenome: ");
@@ -177,28 +181,34 @@ public class ClienteView {
 
                     int k = s.nextInt();
 
-                    if(k == 1){
+                    if (k == 1) {
                         System.out.println("CPF: ");
+                        s.nextLine();
                         cpf = s.nextLine();
 
                         c = repoCliente.findByCpf(cpf);
 
                         System.out.println(c);
-                        for(Fatura f: c.getFaturas()){
+                        for (Fatura f : c.getFaturas()) {
                             System.out.println(f);
                         }
                     }
-                    if(k == 2){
+                    if (k == 2) {
                         System.out.print("Nome: ");
+                        s.nextLine();
                         nome = s.nextLine();
 
                         System.out.print("Sobrenome: ");
                         sobrenome = s.nextLine();
 
                         c = repoCliente.findByNomeAndSobrenome(nome, sobrenome);
-                        System.out.println(c);
-                        for(Fatura f: c.getFaturas()){
-                            System.out.println(f);
+                        if (c == null) {
+                            System.out.println("cliente nao encontrado");
+                        } else {
+                            System.out.println(c);
+                            for (Fatura f : c.getFaturas()) {
+                                System.out.println(f);
+                            }
                         }
                     }
 

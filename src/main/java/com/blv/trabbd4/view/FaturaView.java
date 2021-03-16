@@ -8,12 +8,14 @@ import com.blv.trabbd4.repository.ClienteRepository;
 import com.blv.trabbd4.repository.FaturaRepository;
 import com.blv.trabbd4.repository.ParcelaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+@Controller
 public class FaturaView {
     @Autowired
     FaturaRepository repoFatura;
@@ -27,12 +29,18 @@ public class FaturaView {
 
     private boolean running;
 
-    public FaturaView() throws ParseException {
+    public void viewMenu() throws ParseException {
 
         this.running = true;
 
         Scanner s = new Scanner(System.in);
         while (this.running) {
+            System.out.println("Digite 1 para cadastrar uma fatura");
+            System.out.println("Digite 2 para mostrar todas as faturas");
+            System.out.println("Digite 3 para mostrar todas as parcelas de uma fatura");
+            System.out.println("Digite 4 Altera a situacao da fatura");
+            System.out.println("Digite 5 imprime fatura nao pagas");
+            System.out.println("Digite 6 imprime fatura pagas em uma determinada data");
             int selected = s.nextInt();
             switch(selected){
                 case 1: //Cadastra Fatura
@@ -153,8 +161,14 @@ public class FaturaView {
 
                     break;
                 default:
+                    this.running = false;
+                    break;
             }
         }
+
+    }
+
+    public FaturaView(){
     }
 
 }

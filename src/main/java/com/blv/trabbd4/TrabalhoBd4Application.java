@@ -50,7 +50,6 @@ public class TrabalhoBd4Application implements CommandLineRunner {
     @Autowired
     MainView mainView;
 
-
     public static void main(String[] args) {
         SpringApplication.run(TrabalhoBd4Application.class, args);
     }

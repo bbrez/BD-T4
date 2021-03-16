@@ -11,6 +11,9 @@ public class MainView {
     @Autowired
     ClienteView cv;
 
+    @Autowired
+    FaturaView fv;
+
     public void viewMenu(){
         boolean running = true;
         Scanner s = new Scanner(System.in);
@@ -25,7 +28,7 @@ public class MainView {
                     break;
                 case 2: //Fatura
                     try{
-                        FaturaView fv = new FaturaView();
+                        fv.viewMenu();
                     } catch (Exception e) {
                         System.exit(1);
                     }
