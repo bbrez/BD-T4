@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ClienteView {
+    /*
     private boolean running;
 
     @Autowired
@@ -172,4 +173,5 @@ public class ClienteView {
         }
 
     }
+    */
 }

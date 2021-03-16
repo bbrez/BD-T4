@@ -123,15 +123,15 @@ public class TrabalhoBd4Application implements CommandLineRunner {
         faturaRepository.save(fatura3);
         faturaRepository.save(fatura4);
         faturaRepository.save(fatura5);
-        parcelaRepository.save(new Parcela(200, new SimpleDateFormat("dd/MM/yyy").parse("20/04/2021"),"Pendente", fatura1));
-        parcelaRepository.save(new Parcela(200, new SimpleDateFormat("dd/MM/yyy").parse("20/05/2021"),"Pendente", fatura1));
-        parcelaRepository.save(new Parcela(200, new SimpleDateFormat("dd/MM/yyy").parse("20/06/2021"),"Pendente", fatura1));
-        parcelaRepository.save(new Parcela(1000, new SimpleDateFormat("dd/MM/yyy").parse("13/05/2021"), "Pendente", fatura2));
-        parcelaRepository.save(new Parcela(550, new SimpleDateFormat("dd/MM/yyy").parse("20/05/2021"), "Pendente", fatura3));
-        parcelaRepository.save(new Parcela(550, new SimpleDateFormat("dd/MM/yyy").parse("20/06/2021"), "Pendente", fatura3));
-        parcelaRepository.save(new Parcela(700, new SimpleDateFormat("dd/MM/yyy").parse("28/04/2021"), "Pendente", fatura4));
-        parcelaRepository.save(new Parcela(450, new SimpleDateFormat("dd/MM/yyy").parse("03/05/2021"), "Pendente", fatura5));
-        parcelaRepository.save(new Parcela(450, new SimpleDateFormat("dd/MM/yyy").parse("03/06/2021"), "Pendente", fatura5));
+        parcelaRepository.save(new Parcela(200, new SimpleDateFormat("dd/MM/yyy").parse("20/04/2021"),EstadoPagamento.Pendente, fatura1));
+        parcelaRepository.save(new Parcela(200, new SimpleDateFormat("dd/MM/yyy").parse("20/05/2021"),EstadoPagamento.Pendente, fatura1));
+        parcelaRepository.save(new Parcela(200, new SimpleDateFormat("dd/MM/yyy").parse("20/06/2021"),EstadoPagamento.Pendente, fatura1));
+        parcelaRepository.save(new Parcela(1000, new SimpleDateFormat("dd/MM/yyy").parse("13/05/2021"), EstadoPagamento.Pendente, fatura2));
+        parcelaRepository.save(new Parcela(550, new SimpleDateFormat("dd/MM/yyy").parse("20/05/2021"), EstadoPagamento.Pendente, fatura3));
+        parcelaRepository.save(new Parcela(550, new SimpleDateFormat("dd/MM/yyy").parse("20/06/2021"), EstadoPagamento.Pendente, fatura3));
+        parcelaRepository.save(new Parcela(700, new SimpleDateFormat("dd/MM/yyy").parse("28/04/2021"), EstadoPagamento.Pendente, fatura4));
+        parcelaRepository.save(new Parcela(450, new SimpleDateFormat("dd/MM/yyy").parse("03/05/2021"), EstadoPagamento.Pendente, fatura5));
+        parcelaRepository.save(new Parcela(450, new SimpleDateFormat("dd/MM/yyy").parse("03/06/2021"), EstadoPagamento.Pendente, fatura5));
         clienteRepository.saveAll(clientes);
     }
 }

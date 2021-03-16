@@ -44,6 +44,7 @@ public class Fatura{
         this.numeroParcelas = numeroParcelas;
         this.valorTotal = valorTotal;
         this.cliente = cliente;
+        this.situacao = "";
     }
 
     public String toString(){

@@ -19,7 +19,6 @@ public class Parcela {
     @Column(nullable=false)
     Date vencimento;
 
-    @Column(nullable=false)
     Date pagamento = null;
 
     @Enumerated
@@ -30,7 +29,7 @@ public class Parcela {
 
     public Parcela(){}
 
-    public Parcela(double valorParcela, Date vencimento, EstadoPagamento situacao) {
+    public Parcela(double valorParcela, Date vencimento, EstadoPagamento situacao, Fatura fatura) {
         ValorParcela = valorParcela;
         this.vencimento = vencimento;
         this.situacao = situacao;
@@ -43,17 +42,5 @@ public class Parcela {
         if (pagamento != null) pago = vencimento.toString();
         else pago = "";
         return "id da parcela: " + idParcela + " vencimento: " + vencimento + " situacao atual: " + pago + "  " + situacao + " pertencente a fatura: " + fatura.getId();
-    }
-
-    public void setFatura(Fatura fatura) {
-        this.fatura = fatura;
-    }
-
-    public double getValor() {
-        return ValorParcela;
-    }
-
-    public void setPagamento(Date date) {
-        pagamento = date;
     }
 }
