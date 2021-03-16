@@ -1,8 +1,11 @@
 package com.blv.trabbd4.model;
 
 import lombok.Data;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -29,20 +32,35 @@ public class Cliente {
     @JoinColumn(name="id_endereco_comercial")
     private EnderecoEspecifico enderecoComercial;
 
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Telefone> telefones;
 
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Fatura> faturas;
 
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Email> emails;
+
+    public Long getId(){return idCliente;}
 
     public Cliente(){}
     public Cliente(String nome, String sobrenome, String cpf){
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
+        this.emails = new ArrayList<>();
+        this.faturas = new ArrayList<>();
+        this.telefones = new ArrayList<>();
     }
 
+    public void setEnderecoResidencial(EnderecoEspecifico enderecoResidencial) {
+        this.enderecoResidencial = enderecoResidencial;
+    }
+
+    public void setEnderecoComercial(EnderecoEspecifico enderecoComercial) {
+        this.enderecoComercial = enderecoComercial;
+    }
 }

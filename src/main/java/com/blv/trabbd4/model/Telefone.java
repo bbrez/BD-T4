@@ -20,8 +20,9 @@ public class Telefone {
 
     public Telefone() { }
 
-    public Telefone(String telefone) {
+    public Telefone(String telefone, Cliente cliente) {
         this.telefone = telefone;
+        this.cliente = cliente;
     }
 
     @Override

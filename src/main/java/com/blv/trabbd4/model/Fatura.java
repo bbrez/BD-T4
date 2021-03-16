@@ -39,16 +39,15 @@ public class Fatura{
 
 
     public Fatura(){}
-    public Fatura(Date emissao, int numeroParcelas, String situacao, List<Parcela> parcelas) {
+    public Fatura(Date emissao, int numeroParcelas, double valorTotal, Cliente cliente) {
         this.emissao = emissao;
         this.numeroParcelas = numeroParcelas;
-        this.situacao = situacao;
-        this.valorTotal = parcelas.stream().mapToDouble(Parcela::getValor).sum();
-        this.setParcela(parcelas);
+        this.valorTotal = valorTotal;
+        this.cliente = cliente;
     }
 
     public String toString(){
-        return "id da fatura: " + idFatura + " data de emissao: " + emissao + " numero de parcelas: " + numeroParcelas + " situacao atual: " + situacao + " valor total: " + valorTotal + " saldo a pagar" + saldoPagar;
+        return "id da fatura: " + idFatura + " data de emissao: " + emissao + " numero de parcelas: " + numeroParcelas + " valor total: " + valorTotal;
     }
 
     public void setParcela(List<Parcela> parcelas) {

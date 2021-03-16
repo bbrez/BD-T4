@@ -19,8 +19,9 @@ public class Email {
     private Cliente cliente;
 
     public Email() { }
-    public Email(String email){
+    public Email(String email, Cliente cliente){
         this.email = email;
+        this.cliente = cliente;
     }
 
     @Override
@@ -28,6 +29,6 @@ public class Email {
         return "Email{" +
                 "idEmail=" + idEmail +
                 ", email='" + email + '\'' +
-                '}';
+                '}' + cliente.getId();
     }
 }

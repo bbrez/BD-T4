@@ -34,6 +34,7 @@ public class Parcela {
         ValorParcela = valorParcela;
         this.vencimento = vencimento;
         this.situacao = situacao;
+        this.fatura = fatura;
     }
 
     @Override
