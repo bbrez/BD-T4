@@ -22,10 +22,11 @@ public class Parcela {
 
     public Parcela(){}
 
-    public Parcela(double valorParcela, Date vencimento, String situacao) {
+    public Parcela(double valorParcela, Date vencimento, String situacao, Fatura fatura) {
         ValorParcela = valorParcela;
         this.vencimento = vencimento;
         this.situacao = situacao;
+        this.fatura = fatura;
     }
 
     @Override

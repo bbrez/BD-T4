@@ -24,4 +24,9 @@ public class EnderecoEspecifico {
         this.complemento = complemento;
         this.endereco = endereco;
     }
+
+    @Override
+    public String toString(){
+        return "id especifico: " + idEnderecoEspecifico + " numero: " + numero + " complemento: " + complemento + "pertence ao endereco: " + endereco;
+    }
 }

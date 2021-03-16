@@ -14,7 +14,6 @@ public class Fatura{
 
     Date emissao;
     int numeroParcelas;
-    String situacao;
     double valorTotal;
 
     @ManyToOne
@@ -22,15 +21,15 @@ public class Fatura{
     private Cliente cliente;
 
     public Fatura(){}
-    public Fatura(Date emissao, int numeroParcelas, String situacao, double valorTotal) {
+    public Fatura(Date emissao, int numeroParcelas, double valorTotal, Cliente cliente) {
         this.emissao = emissao;
         this.numeroParcelas = numeroParcelas;
-        this.situacao = situacao;
         this.valorTotal = valorTotal;
+        this.cliente = cliente;
     }
 
     public String toString(){
-        return "id da fatura: " + idFatura + " data de emissao: " + emissao + " numero de parcelas: " + numeroParcelas + " situacao atual: " + situacao + " valor total: " + valorTotal;
+        return "id da fatura: " + idFatura + " data de emissao: " + emissao + " numero de parcelas: " + numeroParcelas + " valor total: " + valorTotal;
     }
 
 }
